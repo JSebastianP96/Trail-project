@@ -68,11 +68,8 @@ public inherited sharing class ContactsService {
 
         for(AggregateResult aggregateResult :  aggregatesAcc){
             Account currentAccount = new Account();
-            System.debug('Current account' + aggregateResult);
-            System.debug('accountsWithContactInfo' + accountsWithContactInfo);
             if(accountsWithContactInfo.get(String.valueOf(aggregateResult.get('ParentId'))) != null){
                 currentAccount = accountsWithContactInfo.get(String.valueOf(aggregateResult.get('ParentId')));
-                System.debug('SP' + currentAccount);
             }else{
                 currentAccount.Id = String.valueOf(aggregateResult.get('ParentId'));
                 currentAccount.Number_Of_Contacts__c = currentAccount.Number_Of_Contacts__c != null ? currentAccount.Number_Of_Contacts__c : 0;
@@ -90,7 +87,6 @@ public inherited sharing class ContactsService {
                 String.valueOf(youngestContactYearsOld)
             };
             currentAccount.Description = String.format(template, argument);
-            System.debug('Current account 2' + currentAccount);
             accountsToUpdate.put(currentAccount.Id, currentAccount);
         }
         for(Id atu : accountsWithContactInfo.keySet()){
@@ -98,7 +94,6 @@ public inherited sharing class ContactsService {
                 accountsToUpdate.put(atu, accountsWithContactInfo.get(atu));
             }
         }
-        System.debug('Current account 3' + accountsToUpdate);
 
 
         if(!accountsToUpdate.values().isEmpty()){
