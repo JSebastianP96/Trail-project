@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : juan.parra@unosquare.com
  * @group             : 
- * @last modified on  : 19-05-2022
+ * @last modified on  : 23-05-2022
  * @last modified by  : juan.parra@unosquare.com
 **/
 public with sharing class ContactTiggerHandler extends TriggerHandler {
@@ -14,9 +14,9 @@ public with sharing class ContactTiggerHandler extends TriggerHandler {
         ContactsService.rollSummaryAccount(trigger.new);
     }
 
-    public override void AfterDelete() {
+    public override void BeforeDelete() {
         try{
-            ContactsService.rollSummaryAccount(trigger.new);
+            ContactsService.rollSummaryAccount(trigger.old);
         }catch(Exception e){
             Logger.error('Nico Message',trigger.new,e);
             Logger.saveLog();
