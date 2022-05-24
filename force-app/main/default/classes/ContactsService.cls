@@ -35,7 +35,7 @@ public inherited sharing class ContactsService {
 
         Map<Id, AggregateResult> aggregatesByAccountIds = new Map<Id, AggregateResult>();
         Account updateAccount = new Account();
-        // List<Account> accountsToUpdate = new List<Account>();
+
         Map<Id, Account> accountsToUpdate = new Map<Id, Account>();
         Map<Id, Account> accountsWithContactInfo = new Map<Id, Account>();
         for(AggregateResult aggregate :  aggregates){
